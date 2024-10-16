@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const authRouter = require("./routes/auth");
 const todosRouter = require("./routes/todos");
@@ -7,6 +8,11 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.use("/auth", authRouter);
 app.use("/todos", todosRouter);
